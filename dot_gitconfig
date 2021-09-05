@@ -1,0 +1,12 @@
+[user]
+        name = Julian Anderson
+        email = julian.anderson6207@gmail.com
+[push]
+        default = simple
+[alias]
+        jedi = push --force
+        goofed = reset --hard origin/master
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

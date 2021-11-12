@@ -95,3 +95,6 @@ else
 	" Ubuntu
 	let g:gitgutter_git_executable = '/usr/bin/git'
 endif
+
+" Using fzf (installed via Homebrew) in Vim
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf

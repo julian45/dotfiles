@@ -4,7 +4,7 @@ export ZSH=$HOME/.zgen/robbyrussell/oh-my-zsh-master
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
 alias kb="keybase"
-alias gpg="gpg2"
+# alias gpg="gpg2"
 alias cls="clear"
 
 # load zgen

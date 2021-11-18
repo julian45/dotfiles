@@ -91,3 +91,8 @@ fi
 [[ $- == *i* ]] && source "~/.fzf/shell/completion.zsh" 2> /dev/null
 ## keybindings
 source "${HOME}/.fzf/shell/key-bindings.zsh"
+
+# personal bin folder
+if [[ ! "$PATH" == *${HOME}/bin* ]]; then
+	export PATH="${PATH:+${PATH}:}${HOME}/bin"
+fi

@@ -97,4 +97,4 @@ else
 endif
 
 " Using fzf (installed via Homebrew) in Vim
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+set rtp+=$HOME/.fzf

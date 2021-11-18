@@ -80,14 +80,14 @@ if [[ "$(uname -a)" == *"microsoft"* ]]; then
        cd ~
 fi
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fzf sourcing
 ## setup
-if [[ ! "$PATH" == */home/linuxbrew/.linuxbrew/opt/fzf/bin* ]]; then
-	export PATH="${PATH:+${PATH}:}/home/linuxbrew/.linuxbrew/opt/fzf/bin"
+if [[ ! "$PATH" == *${HOME}/.fzf/bin* ]]; then
+	export PATH="${PATH:+${PATH}:}${HOME}.fzf/bin"
 fi
 ## autocompletion
-[[ $- == *i* ]] && source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "~/.fzf/shell/completion.zsh" 2> /dev/null
 ## keybindings
-source "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh"
+source "~/.fzf/shell/key-bindings.zsh"

@@ -90,7 +90,7 @@ let g:airline_solarized_bg='dark'
 " let g:rehash256 = 1
 if system('uname -s') == "Darwin\n"
 	" macOS
-	let g:gitgutter_git_executable = '/usr/local/bin/git'
+	let g:gitgutter_git_executable = '/opt/homebrew/bin/git'
 else
 	" Ubuntu
 	let g:gitgutter_git_executable = '/usr/bin/git'

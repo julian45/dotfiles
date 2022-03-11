@@ -39,7 +39,7 @@ if ! zgen saved; then
 		zgen oh-my-zsh plugins/archlinux
 	fi
 	if [[ $(uname) == "Darwin" ]] then
-		zgen oh-my-zsh plugins/osx
+		zgen oh-my-zsh plugins/macos
 	fi
 	zgen load zsh-users/zsh-syntax-highlighting
 

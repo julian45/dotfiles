@@ -38,9 +38,6 @@ if ! zgen saved; then
 	if [[ -f /etc/arch-release ]] then
 		zgen oh-my-zsh plugins/archlinux
 	fi
-	if [[ $(uname) == "Darwin" ]] then
-		zgen oh-my-zsh plugins/macos
-	fi
 	zgen load zsh-users/zsh-syntax-highlighting
 
 	# theme

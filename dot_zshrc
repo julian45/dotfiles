@@ -51,7 +51,7 @@ if ! zgen saved; then
 fi
 
 # For a complete refresh of rc files
-alias shrefresh="zgen update; git -C ~/.dotfiles pull; vim +PluginInstall +qall; vim +PluginUpdate"
+alias shrefresh="zgen update; chezmoi update; vim +PluginInstall +qall; vim +PluginUpdate"
 
 # if using iTerm2 on mac
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

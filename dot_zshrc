@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.zgen/robbyrussell/oh-my-zsh/master
+# export ZSH=$HOME/.zgen/robbyrussell/oh-my-zsh/master
 
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
@@ -23,7 +23,7 @@ fi
 if ! zgenom saved; then
 	echo "Creating a zgenom save"
 
-	zgenom oh-my-zsh
+	zgenom ohmyzsh
 
 	# plugins
 	zgenom ohmyzsh plugins/git

@@ -18,5 +18,7 @@ git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply julian45
 vim +PluginInstall +qall
+# run below line only if you've used tarjoilija/zgen before
+rm -rf .zgen
 ```
 Then, open a new shell and wait just a bit, and you should be good to go! The above section is partially reconstructed from memory; please let me know if I'm missing something.

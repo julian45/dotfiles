@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.zgen/robbyrussell/oh-my-zsh-master
+export ZSH=$HOME/.zgen/robbyrussell/oh-my-zsh/master
 
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
@@ -7,8 +7,8 @@ alias kb="keybase"
 # alias gpg="gpg2"
 alias cls="clear"
 
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
 
 # before oh-my-zsh runs (and thus runs compinit), enable homebrew completions
 # see https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
@@ -20,36 +20,38 @@ if type brew &>/dev/null; then
 fi
 
 # plugin time
-if ! zgen saved; then
-	echo "Creating a zgen save"
+if ! zgenom saved; then
+	echo "Creating a zgenom save"
 
-	zgen oh-my-zsh
+	zgenom oh-my-zsh
 
 	# plugins
-	zgen oh-my-zsh plugins/git
-	zgen oh-my-zsh plugins/sudo
-	zgen oh-my-zsh plugins/brew
-	zgen oh-my-zsh plugins/emoji
-	zgen oh-my-zsh plugins/common-aliases
-	zgen oh-my-zsh plugins/systemd
+	zgenom ohmyzsh plugins/git
+	zgenom ohmyzsh plugins/sudo
+	zgenom ohmyzsh plugins/brew
+	zgenom ohmyzsh plugins/emoji
+	zgenom ohmyzsh plugins/common-aliases
+	zgenom ohmyzsh plugins/systemd
 	if [[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]] then
-		zgen oh-my-zsh plugins/debian
+		zgenom ohmyzsh plugins/debian
 	fi
 	if [[ -f /etc/arch-release ]] then
-		zgen oh-my-zsh plugins/archlinux
+		zgenom ohmyzsh plugins/archlinux
 	fi
 	if [[ $(uname) == "Darwin" ]] then
-		zgen oh-my-zsh plugins/macos
+		zgenom ohmyzsh plugins/macos
+		zgenom load unixorn/tumult.plugin.zsh
 	fi
-	zgen load zsh-users/zsh-syntax-highlighting
+	zgenom load zsh-users/zsh-syntax-highlighting
+	zgenom load MichaelAquilina/zsh-you-should-use
 	# below plugin is meant for solarized-dark themed terminals
-	zgen load zlsun/solarized-man
+	zgenom load zlsun/solarized-man
 
 	# theme
-	zgen load subnixr/minimal
+	zgenom load subnixr/minimal
 
 	# save all to init script
-	zgen save
+	zgenom save
 fi
 
 # For a complete refresh of rc files

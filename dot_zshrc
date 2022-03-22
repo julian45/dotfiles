@@ -63,13 +63,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # PATH additions
 export PATH="$PATH:$HOME/.gnupg"
 
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-export PATH="/home/linuxbrew/.linuxbrew/opt/python/libexec/bin:$PATH"
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/opt/go/libexec/bin
-export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
-export PATH"=/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
+if [[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]] then
+	export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+	export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+	export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+	export PATH="/home/linuxbrew/.linuxbrew/opt/python/libexec/bin:$PATH"
+	export PATH=$PATH:/home/linuxbrew/.linuxbrew/opt/go/libexec/bin
+	export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"
+	export PATH"=/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
+fi
 
 # theme config
 MNML_RPROMPT=('mnml_cwd 2' mnml_git)

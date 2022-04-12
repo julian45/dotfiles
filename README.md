@@ -18,6 +18,8 @@ git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply julian45
 vim +PluginInstall +qall
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install # you can safely say no to the last question, as the sourcing commands are already included 
 # run below line only if you've used tarjoilija/zgen before
 rm -rf .zgen
 ```

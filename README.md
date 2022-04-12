@@ -11,6 +11,7 @@ Here be dotfiles!
     * a number of plugins, mostly for QoL improvement and git integration
 * [chezmoi](https://github.com/twpayne/chezmoi) for dotfiles management
 * [fzf](https://github.com/junegunn/fzf)
+* [Solarized Dark](https://ethanschoonover.com/solarized/) theming throughout (you may need to update your terminal emulator's theme & color palettes!)
 
 ## Stuff you should run
 ```

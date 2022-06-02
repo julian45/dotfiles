@@ -77,13 +77,16 @@ fi
 MNML_RPROMPT=('mnml_cwd 2' mnml_git)
 
 # If using Microsoft Terminal, default to ~ rather than /mnt/c/Users/[username]
+# and also alias clip.exe to clip
 ## WSL1
 if [[ "$(uname -a)" == *"Microsoft"* ]]; then
 	cd ~
+	alias clip="clip.exe"
 fi
 ## WSL2
 if [[ "$(uname -a)" == *"microsoft"* ]]; then
        cd ~
+       alias clip="clip.exe"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

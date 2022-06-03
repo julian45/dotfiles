@@ -108,3 +108,5 @@ fi
 
 # theming for sharkdp/bat
 export BAT_THEME="Solarized (dark)"
+# can't believe I didn't do this already
+export EDITOR="vim"

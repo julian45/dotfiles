@@ -110,3 +110,8 @@ fi
 export BAT_THEME="Solarized (dark)"
 # can't believe I didn't do this already
 export EDITOR="vim"
+
+# path addition for ADB
+if [[ ! "$PATH" == *${HOME}/bin/platform-tools* ]]; then
+	export PATH="${PATH:+${PATH}:}${HOME}/bin/platform-tools"
+fi

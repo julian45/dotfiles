@@ -23,6 +23,10 @@ Plugin 'tpope/vim-surround'
 " Themes
 Plugin 'altercation/vim-colors-solarized'
 
+" pandoc- and Quarto-related plugins
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'quarto-dev/quarto-vim'
+
 " NERD plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'commentToggle'

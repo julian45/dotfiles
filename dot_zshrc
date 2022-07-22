@@ -115,3 +115,8 @@ export EDITOR="vim"
 if [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then
 	export PATH="${PATH:+${PATH}:}${HOME}/.nexustools"
 fi
+
+# annoying workaround for macFUSE issues on macOS
+if [[ $(uname) == "Darwin" ]]; then
+	alias macfuse_reset="sudo kextunload -b io.macfuse.filesystems.macfuse"
+fi

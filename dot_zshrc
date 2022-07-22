@@ -120,3 +120,8 @@ fi
 if [[ $(uname) == "Darwin" ]]; then
 	alias macfuse_reset="sudo kextunload -b io.macfuse.filesystems.macfuse"
 fi
+
+# if 1Password CLI is present, add completions
+if ! type "$op" > /dev/null; then
+	eval "$(op completion zsh)"; compdef _op op
+fi

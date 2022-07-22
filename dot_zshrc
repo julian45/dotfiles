@@ -44,6 +44,7 @@ if ! zgenom saved; then
 	fi
 	zgenom load zsh-users/zsh-syntax-highlighting
 	zgenom load MichaelAquilina/zsh-you-should-use
+	zgenom load unixorn/git-extra-commands
 	# below plugin is meant for solarized-dark themed terminals
 	zgenom load zlsun/solarized-man
 

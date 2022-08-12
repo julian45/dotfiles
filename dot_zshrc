@@ -126,3 +126,7 @@ fi
 if ! type "$op" > /dev/null; then
 	eval "$(op completion zsh)"; compdef _op op
 fi
+
+# deal with annoying tab-completion issue and enforce complete-on-first
+## (not sure how this popped up, but... https://imgur.com/U1CqMH8)
+zstyle '*' single-ignored complete

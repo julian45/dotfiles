@@ -87,8 +87,8 @@ if [[ "$(uname -a)" == *"Microsoft"* ]]; then
 fi
 ## WSL2
 if [[ "$(uname -a)" == *"microsoft"* ]]; then
-       cd ~
-       alias clip="clip.exe"
+	cd ~
+	alias clip="clip.exe"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

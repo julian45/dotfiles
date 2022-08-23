@@ -134,3 +134,8 @@ fi
 # deal with annoying tab-completion issue and enforce complete-on-first
 ## (not sure how this issue popped up, but... https://imgur.com/U1CqMH8)
 zstyle '*' single-ignored complete
+
+# fix homebrew version issues on macOS?
+if [ -d "/opt/homebrew" ]; then
+	alias vim="/opt/homebrew/bin/vim"
+fi

@@ -60,7 +60,7 @@ fi
 alias shrefresh="zgenom update; chezmoi update; vim +PluginInstall +qall; vim +PluginUpdate"
 
 # For the same, but silent (e.g., to set as a cron job)
-alias shrefresh_quiet= "zgenom update; chezmoi update; vim +PluginInstall +qall; vim +PluginUpdate +qall"
+alias shrefresh_quiet="zgenom update; chezmoi update; vim +PluginInstall +qall; vim +PluginUpdate +qall"
 
 # if using iTerm2 on mac
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

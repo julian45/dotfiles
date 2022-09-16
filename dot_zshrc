@@ -110,7 +110,10 @@ source "${HOME}/.fzf/shell/key-bindings.zsh"
 if [[ ! "$PATH" == *${HOME}/bin* ]]; then
 	export PATH="${PATH:+${PATH}:}${HOME}/bin"
 fi
-
+# similar to the above but to satisfy a particular install
+if [[ ! "$PATH" == *${HOME}/.local/bin* ]]; then
+	export PATH="${PATH:+${PATH}:}${HOME}/.local/bin"
+fi
 # theming for sharkdp/bat
 export BAT_THEME="Solarized (dark)"
 # can't believe I didn't do this already

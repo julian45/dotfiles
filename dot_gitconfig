@@ -10,3 +10,21 @@
 	rebase = false
 [init]
 	defaultBranch = main
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+[add.interactive]
+	useBuiltin = false
+
+[delta]
+	navigate = true 	# use n and N to move between diff sections
+	light = false		# set to true if using a light-themed terminal
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colormoved = default

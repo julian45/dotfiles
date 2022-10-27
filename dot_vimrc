@@ -20,6 +20,9 @@ Plugin 'tpope/vim-surround'
 " Plugin 'vim-syntastic/syntastic'
 " Plugin 'w0rp/ale'
 
+" fzf integration
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 " Themes
 Plugin 'altercation/vim-colors-solarized'
 

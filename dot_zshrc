@@ -130,7 +130,10 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # if 1Password CLI is present, add completions
-if ! type "$op" > /dev/null; then
+#if ! type "$op" > /dev/null; then
+#	eval "$(op completion zsh)"; compdef _op op
+#fi
+if [[ `which op &>/dev/null && echo $?` == 0 ]]; then
 	eval "$(op completion zsh)"; compdef _op op
 fi
 

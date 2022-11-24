@@ -116,8 +116,13 @@ if [[ ! "$PATH" == *${HOME}/.local/bin* ]]; then
 fi
 # theming for sharkdp/bat
 export BAT_THEME="Solarized (dark)"
-# can't believe I didn't do this already
-export EDITOR="vim"
+# if neovim is present, make that the editor; if not, vim
+if [[ `which nvim &>/dev/null && echo $?` == 0 ]]; then
+	export EDITOR="nvim"
+	export VISUAL="$(which nvim)"
+else
+	export EDITOR="vim"
+fi
 
 # path addition for corbindavenport/nexus-tools
 if [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then

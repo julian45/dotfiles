@@ -35,10 +35,7 @@ rm -rf .zgen
 
 ### neovim-specific
 
-Note that the clone command may not be needed due to the way that [plugins.lua](dot_config/nvim/lua/plugins.lua) _should_ be set up. Similarly, you may or may not need to run `nvim +PackerSync` after the below command to fetch & "compile" the packages.
-```sh
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
+[plugins.lua](dot_config/nvim/lua/plugins.lua) is set up so that upon your first run of `nvim`, it should automatically pull everything down. Once it's done, you'll likely need to quit and reopen for everything (e.g., theme) to properly apply, but after that, everything should be good to go for neovim! 
 
 ### vim-specific
 ```sh

@@ -25,3 +25,8 @@ colorscheme solarized
 " mappings/remappings
 let g:mapleader = ','
 nnoremap ; :
+
+" configuration for Neovide (https://neovide.dev)
+if exists("g:neovide")
+    set guifont=Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12
+endif

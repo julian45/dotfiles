@@ -147,3 +147,8 @@ zstyle '*' single-ignored complete
 if [ -d "/opt/homebrew" ]; then
 	alias vim="/opt/homebrew/bin/vim"
 fi
+
+# if cantino/mcfly is present, initialize it
+if [[ `which mcfly &>/dev/null && echo $?` == 0 ]]; then
+    eval "$(mcfly init zsh)"
+fi

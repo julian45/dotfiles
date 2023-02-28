@@ -3,55 +3,59 @@ filetype off                  " required
 
 " set t_Co=256
 set laststatus=2 " Make the airline show up everywhere
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" Initialize vim-plug
+call plug#begin()
+Plug 'junegunn/vim-plug'
 
 " Stuff from tpope
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-surround'
-" Plugin 'tpope/vim-fireplace'
-" Plugin 'tpope/vim-salve'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-fireplace'
+" Plug 'tpope/vim-salve'
 
 " Linting
-" Plugin 'vim-syntastic/syntastic'
-" Plugin 'w0rp/ale'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'w0rp/ale'
 
 " fzf integration
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Themes
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " pandoc- and Quarto-related plugins
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'quarto-dev/quarto-vim'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'quarto-dev/quarto-vim'
 
 " NERD plugins
-Plugin 'scrooloose/nerdtree'
-Plugin 'commentToggle'
+Plug 'scrooloose/nerdtree'
+Plug 'commentToggle'
 
 " Airline and associated plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 
 " Others
-Plugin 'rust-lang/rust.vim'
-Plugin 'vimwiki/vimwiki'
-Plugin 'vim-scripts/Conque-Shell'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ntpeters/vim-better-whitespace'
-" Plugin 'venantius/vim-eastwood'
-Plugin 'dodie/vim-disapprove-deep-indentation'
-Plugin 'chr4/sslsecure.vim'
-Plugin 'dstein64/vim-startuptime'
+Plug 'rust-lang/rust.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/Conque-Shell'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ntpeters/vim-better-whitespace'
+" Plug 'venantius/vim-eastwood'
+Plug 'dodie/vim-disapprove-deep-indentation'
+Plug 'chr4/sslsecure.vim'
+Plug 'dstein64/vim-startuptime'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" All of your Plugs must be added before the following line
+call plug#end()            " required
 filetype plugin indent on    " required
 
 set statusline+=%#warningmsg#

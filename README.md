@@ -15,7 +15,7 @@ Here be dotfiles!
       * [gitsigns](https://github.com/lewis6991/gitsigns.nvim) for the gutter
     * [leap](https://github.com/ggandor/leap.nvim)
 * vim
-  * [Vundle](https://github.com/VundleVim/Vundle.vim) for plugin management
+  * [vim-plug](https://github.com/junegunn/vim-plug) for plugin management
     * a number of plugins, mostly for QoL improvement and git integration
 * [chezmoi](https://github.com/twpayne/chezmoi) for dotfiles management
 * [fzf](https://github.com/junegunn/fzf)

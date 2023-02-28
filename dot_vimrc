@@ -36,7 +36,7 @@ Plug 'quarto-dev/quarto-vim'
 
 " NERD plugins
 Plug 'scrooloose/nerdtree'
-Plug 'commentToggle'
+Plug 'vim-scripts/commentToggle'
 
 " Airline and associated plugins
 Plug 'vim-airline/vim-airline'

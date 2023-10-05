@@ -159,7 +159,7 @@ if [ -d "${HOME}/Library/Python/3.11/bin" ]; then
 fi
 
 # if on macOS, create some aliases to ease starting and exiting GlobalProtect
-if [[ $(uname) == "Darwin" ]]; then
+if [[ $(uname) == "Darwin" && `ls -1 /Library/LaunchAgents/com.paloaltonetworks.gp.pangp* 2>/dev/null | wc -l ` -gt 0 ]]; then
     alias pangpon="launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
     alias pangpoff="launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
 fi

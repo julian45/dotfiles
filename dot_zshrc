@@ -157,3 +157,9 @@ fi
 if [ -d "${HOME}/Library/Python/3.11/bin" ]; then
 	export PATH="${PATH}:${HOME}/Library/Python/3.11/bin"
 fi
+
+# if on macOS, create some aliases to ease starting and exiting GlobalProtect
+if [[ $(uname) == "Darwin" ]]; then
+    alias pangpon="launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
+    alias pangpoff="launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
+fi

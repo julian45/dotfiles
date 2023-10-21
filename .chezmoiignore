@@ -1,1 +1,4 @@
 README.md
+{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+.agent-bridge.sh
+{{- end }}

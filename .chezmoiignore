@@ -1,4 +1,4 @@
 README.md
-{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- if (and (.chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "socat")) }}
 .agent-bridge.sh
 {{- end }}

@@ -10,21 +10,23 @@
 	rebase = false
 [init]
 	defaultBranch = main
+{{- if lookPath "delta" }}
 
 [core]
 	pager = delta
 
-[interactive]
-	diffFilter = delta --color-only
-[add.interactive]
-	useBuiltin = false
-
 [delta]
 	navigate = true 	# use n and N to move between diff sections
 	light = false		# set to true if using a light-themed terminal
+
+[interactive]
+    diffFIlter = delta --color-only
 
 [merge]
 	conflictstyle = diff3
 
 [diff]
 	colormoved = default
+{{ end -}}
+[add.interactive]
+	useBuiltin = false

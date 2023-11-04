@@ -1,0 +1,4 @@
+{{- if (and (.chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "wslvar")) -}}
+#!/usr/bin/env bash
+export winhome="$(wslpath "$(wslvar USERPROFILE 2>/dev/null)")"
+{{ end -}}

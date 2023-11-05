@@ -1,6 +1,9 @@
+{{ $commitname := promptString "commitname" -}}
+{{ $commitemail := promptString "commitemail" -}}
+
 [user]
-        name = Julian Anderson
-        email = julian.anderson6207@gmail.com
+        name = {{ $commitname }}
+        email = {{ $commitemail }}
 [push]
         default = simple
 [alias]

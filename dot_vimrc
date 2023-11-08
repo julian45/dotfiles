@@ -54,9 +54,14 @@ Plug 'dodie/vim-disapprove-deep-indentation'
 Plug 'chr4/sslsecure.vim'
 Plug 'dstein64/vim-startuptime'
 
+Plug 'alker0/chezmoi.vim'
+
 " All of your Plugs must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
+
+"for chezmoi.vim
+let g:chezmoi#use_tmp_buffer = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

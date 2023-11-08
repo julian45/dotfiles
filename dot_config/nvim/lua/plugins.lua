@@ -12,12 +12,18 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
     -- manage packer itself
     use 'wbthomason/packer.nvim'
 
     -- colorscheme, of course
     use 'ishan9299/nvim-solarized-lua'
+
+    -- chezmoi highlighting
+    use {
+        'alker0/chezmoi.vim',
+        config = function() vim.g['chezmoi#use_tmp_buffer'] = true end
+    }
 
     -- fzf
     use { 'junegunn/fzf', run = ":call fzf#install()" }
@@ -73,3 +79,14 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+
+require('nvim-treesitter.configs').setup({
+    highlight = {
+        disable = function()
+            -- check if 'filetype' option includes 'chezmoitmpl'
+            if string.find(vim.bo.filetype, 'chezmoitmpl') then
+                return true
+            end
+        end,
+    },
+})

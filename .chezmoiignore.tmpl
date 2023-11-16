@@ -1,6 +1,6 @@
 README.md
 {{- if eq .chezmoi.os "darwin" }}
 .agent-bridge.sh
-{{ else if (not (and (eq .chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "socat"))) }}
+{{ else if (not (and (.chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "socat"))) }}
 .agent-bridge.sh
 {{ end }}

@@ -14,7 +14,8 @@ if [ $ALREADY_RUNNING != "0" ]; then
     if [ -S "$SSH_AUTH_SOCK" ]; then
         # not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
         echo "removing previous socket..."
-        rm "$SSH_AUTH_SOCK"
+	# Some *nixes are rather insistent about prompting for removal, so let's force it
+        rm -f "$SSH_AUTH_SOCK"
     fi
     echo "Starting SSH-Agent relay..."
     # setsid to force new session to keep running

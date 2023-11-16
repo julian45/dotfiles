@@ -1,7 +1,4 @@
 README.md
-{{- if (not (and (or (eq .chezmoi.os "darwin") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) (lookPath "socat"))) }}
-.agent-bridge.sh
-{{- end }}
 {{- if eq .chezmoi.os "darwin" }}
 .agent-bridge.sh
 {{ else if (not (and (eq .chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "socat"))) }}

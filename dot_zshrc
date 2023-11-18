@@ -163,8 +163,3 @@ if [[ $(uname) == "Darwin" && `ls -1 /Library/LaunchAgents/com.paloaltonetworks.
     alias pangpon="launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
     alias pangpoff="launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
 fi
-
-# if on WSL and chezmoi is checking correctly, set up the 1Password ssh agent
-if [[ -f ~/.agent-bridge.sh ]]; then
-    source ~/.agent-bridge.sh
-fi

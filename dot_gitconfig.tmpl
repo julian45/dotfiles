@@ -11,22 +11,29 @@
 [init]
 	defaultBranch = main
 {{- if lookPath "delta" }}
-
 [core]
 	pager = delta
-
+	{{- if eq .chezmoi.os "linux" }}
+	{{-    if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+	sshCommand = "ssh.exe"
+	{{-    end -}}
+	{{- end }}
 [delta]
 	navigate = true 	# use n and N to move between diff sections
 	light = false		# set to true if using a light-themed terminal
-
 [interactive]
     diffFilter = delta --color-only
-
 [merge]
 	conflictstyle = diff3
-
 [diff]
-	colormoved = default
+    colormoved = default
+{{ else if (not (lookPath "delta")) }}
+{{   if eq .chezmoi.os "linux" }}
+{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+[core]
+    sshCommand = "ssh.exe"
+{{     end }}
+{{   end }}
 {{ end }}
 [add.interactive]
 	useBuiltin = false

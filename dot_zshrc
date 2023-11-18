@@ -133,6 +133,19 @@ fi
 if [[ $(uname) == "Darwin" ]]; then
 	alias macfuse_reset="sudo kextunload -b io.macfuse.filesystems.macfuse"
 fi
+# detect WSL and if used, add some aliases to make the below easier
+## WSL1
+if [[ "$(uname -a)" == *"Microsoft"* ]]; then
+	alias ssh="ssh.exe"
+	alias ssh-add="ssh-add.exe"
+	alias op="op.exe"
+fi
+## WSL2
+if [[ "$(uname -a)" == *"microsoft"* ]]; then
+	alias ssh="ssh.exe"
+	alias ssh-add="ssh-add.exe"
+	alias op="op.exe"
+fi
 
 # if 1Password CLI is present, add completions
 if [[ `which op &>/dev/null && echo $?` == 0 ]]; then

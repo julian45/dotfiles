@@ -1,6 +1,26 @@
+{{- if .committing -}}
 [user]
-        name = Julian Anderson
-        email = julian.anderson6207@gmail.com
+        name = {{ .name }}
+	email = {{ .email }}
+{{-   if .have1password }}
+	signingkey = key::{{- (onepasswordDetailsFields .onepasswordkeyUUID).public_key.value }}
+{{    else }}
+	signingkey = key::{{- .manualkey }}
+{{-   end -}}
+[gpg]
+	format = ssh
+[gpg "ssh"]
+{{-   if .have1password }}
+{{-     if .is_wsl }}
+	program = {{ expandenv "$winhome/AppData/Local/1Password/app/8/op-ssh-sign.exe" | quote }}
+{{     else if eq .chezmoi.os "darwin" }}
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{-     end }}
+{{   else }}
+	program = {{- lookPath "ssh" | quote -}}
+{{-   end -}}
+[commit]
+	gpgsign = true
 [push]
         default = simple
 [alias]
@@ -28,12 +48,13 @@
 [diff]
     colormoved = default
 {{ else if (not (lookPath "delta")) }}
-{{   if eq .chezmoi.os "linux" }}
-{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{-   if eq .chezmoi.os "linux" }}
+{{-     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 [core]
     sshCommand = "ssh.exe"
-{{     end }}
-{{   end }}
-{{ end }}
+{{-     end }}
+{{-   end }}
+{{- end }}
 [add.interactive]
 	useBuiltin = false
+{{- end }}

@@ -1,0 +1,125 @@
+{{- $name := "Julian Anderson" -}}
+{{- $email := "julian.anderson6207@gmail.com" -}}
+
+{{- $chezmoiForce := or (has "--force" .chezmoi.args) (has "--force=true" .chezmoi.args) -}}
+{{- $interactive := and stdinIsATTY (not $chezmoiForce) -}}
+
+{{- $ubuntu := hasKey .chezmoi.osRelease "ubuntuCodename" -}}
+{{- $wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
+{{- $have1password := or (isExecutable (lookPath "op")) (isExecutable (lookPath "op.exe")) -}}
+{{- $committing := false -}}
+{{- $onepasswordkeyUUID := "" -}}
+{{- $manualkey := "" -}}
+
+{{- if hasKey . "name" -}}
+{{-   $name = .name -}}
+{{- end -}}
+{{- if $interactive -}}
+{{-   range $i := until 99 -}}
+{{-     $question := "❔ What is your full name?" -}}
+{{-     $answer := "" -}}
+{{-     if $name -}}
+{{-       $answer = promptString $question $name -}}
+{{-     else -}}
+{{-       $answer = promptString $question -}}
+{{-     end -}}
+{{-     if regexMatch "^[A-Z][-' a-zA-Z]+$" $answer -}}
+{{-       $name = $answer -}}
+{{-       writeToStdout (printf "✅ Name set as '%s'\n" $name) -}}
+{{-       break -}}
+{{-     end -}}
+{{-     writeToStdout (printf "❌ '%s' is an invalid name\n" $answer) -}}
+{{-     if eq $i 98 -}}
+{{-       writeToStdout "❌ ERROR: maximum tries exceeded\n" -}}
+{{-       exit 1 -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- end -}}
+{{- if $interactive -}}
+{{-   range $i := until 99 -}}
+{{-     $question := "❔ What is your email?" -}}
+{{-     $answer := "" -}}
+{{-     if $email -}}
+{{-       $answer = promptString $question $email -}}
+{{-     else -}}
+{{-       $answer = promptString $question -}}
+{{-     end -}}
+{{-     $answer = lower $answer -}}
+{{-     if regexMatch "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$" $answer -}}
+{{-       $email = $answer -}}
+{{-       writeToStdout (printf "✅ Email set as '%s'\n" $email) -}}
+{{-       break -}}
+{{-     end -}}
+{{-     writeToStdout (printf "❌ '%s' is an invalid email\n" $answer) -}}
+{{-     if eq $i 98 -}}
+{{-       writeToStdout "❌ ERROR: maximum tries exceeded\n" -}}
+{{-       exit 1 -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if hasKey . "committing" -}}
+{{-   $committing = .committing -}}
+{{- end -}}
+{{- if $interactive -}}
+{{-   $question := "❔ Will you be committing in this environment?" -}}
+{{-   $committing = promptBool $question $committing -}}
+{{-   if $committing -}}
+{{-     writeToStdout "✅ Commit-related options enabled\n" -}}
+{{-   else -}}
+{{-     writeToStdout "✅ Commit-related options disabled\n" -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if hasKey . "onepasswordkeyUUID" -}}
+{{-   $onepasswordkeyUUID = .onepasswordkeyUUID -}}
+{{- end -}}
+{{- if (and $interactive $committing $have1password) -}}
+{{-   $question := "💬 paste your commit signing key's 1Password UUID, please" -}}
+{{-   $answer := "" -}}
+{{-   if $onepasswordkeyUUID -}}
+{{-     $answer = promptString $question $onepasswordkeyUUID -}}
+{{-   else -}}
+{{-     $answer = promptString $question "" -}}
+{{-   end -}}
+{{-   $onepasswordkeyUUID = $answer -}}
+{{- end -}}
+
+{{- if hasKey . "manualkey" -}}
+{{-   $manualkey = .manualkey -}}
+{{- end -}}
+{{- if (and $interactive $committing (not $have1password)) -}}
+{{-   $question := "💬 paste your commit signing key here, please" -}}
+{{-   $answer := "" -}}
+{{-   if $manualkey -}}
+{{-     $answer = promptString $question $manualkey -}}
+{{-   else -}}
+{{-     $answer = promptString $question -}}
+{{-   end -}}
+{{-   $manualkey = $answer -}}
+{{- end -}}
+
+{{- if $interactive -}}
+{{-   writeToStdout "\n💡 Tip: you can always make chezmoi ask this again by running `chezmoi init` without `--force`.\n" -}}
+{{- end -}}
+
+{{/* Here we "export" the variables, so we can access them outside this file */ -}}
+data:
+  is_wsl: {{ $wsl }}
+
+  name: "{{ $name }}"
+  email: "{{ $email }}"
+
+  uname_arch: "{{ output "uname" "-m" | trim }}"
+
+  have1password: {{ $have1password }}
+  committing: {{ $committing }}
+  onepasswordkeyUUID: "{{ $onepasswordkeyUUID }}"
+  manualkey: "{{ $manualkey }}"
+
+onepassword:
+  command: "{{ if $wsl }}op.exe{{ else }}op{{ end }}"

@@ -26,6 +26,12 @@ colorscheme solarized
 let g:mapleader = ','
 nnoremap ; :
 
+" prevent nvim from overriding terminal cursor format
+set guicursor=
+"" workaround some broken plugins which set guicursor indiscriminately
+"" (thanks, nvim FAQ!)
+autocmd OptionSet guicursor noautocmd set guicursor=
+
 " configuration for Neovide (https://neovide.dev)
 if exists("g:neovide")
     set guifont=Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12

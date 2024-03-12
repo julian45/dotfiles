@@ -35,7 +35,7 @@ require('packer').startup(function(use)
         config = function() require('gitsigns').setup() end
     }
     use {
-        'feline-nvim/feline.nvim',
+        'freddiehaddad/feline.nvim',
         setup = function() vim.opt.termguicolors = true end,
         config = function() require('feline').setup() end
     }

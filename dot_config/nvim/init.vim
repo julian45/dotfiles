@@ -14,6 +14,7 @@ set expandtab               " convert tabs to white space
 set shiftwidth=4            " width for autoindents
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set termguicolors
+set guicursor=
 
 " get all the plugins we need from lua/plugins.lua
 lua require('plugins')

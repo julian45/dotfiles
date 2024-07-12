@@ -38,6 +38,11 @@ if ! zgenom saved; then
 	if [[ -f /etc/arch-release ]] then
 		zgenom ohmyzsh plugins/archlinux
 	fi
+	if [[ -f /etc/redhat-release ]] && [[ $(cat /etc/redhat-release | awk -F'[^0-9]+' '{ print $2 }') -lt 8 ]] then
+		zgenom ohmyzsh plugins/yum
+	elif [[ -f /etc/redhat-release ]] && [[ $(cat /etc/redhat-release | awk -F'[^0-9]+' '{ print $2 }') -ge 8 ]] then
+		zgenom ohmyzsh plugins/dnf
+	fi
 	if [[ $(uname) == "Darwin" ]] then
 		zgenom ohmyzsh plugins/macos
 		zgenom load unixorn/tumult.plugin.zsh

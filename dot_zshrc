@@ -32,7 +32,7 @@ if ! zgenom saved; then
 	zgenom ohmyzsh plugins/emoji
 	zgenom ohmyzsh plugins/common-aliases
 	zgenom ohmyzsh plugins/systemd
-	if [[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]] then
+	if [[ -f /etc/lsb-release ]] then
 		zgenom ohmyzsh plugins/debian
 	fi
 	if [[ -f /etc/arch-release ]] then

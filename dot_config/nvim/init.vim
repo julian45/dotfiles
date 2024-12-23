@@ -41,3 +41,5 @@ endif
 if executable('pwsh')
     lua require('_tree-sitter-powershell')
 endif
+
+lua require('_lspconfig')

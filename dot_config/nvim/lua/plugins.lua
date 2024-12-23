@@ -49,6 +49,9 @@ require('packer').startup(function(use)
         end,
     }
 
+    -- LSP attempt
+    use 'neovim/nvim-lspconfig'
+
     -- lint with terraform if present
     if vim.fn.executable('terraform') == 1 then
         use 'hashivim/vim-terraform'
@@ -95,3 +98,14 @@ require('nvim-treesitter.configs').setup({
         end,
     },
 })
+
+-- https://www.mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
+if vim.fn.executable('terraform') == 1 then
+    vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+    vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+    vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+    vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+    vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+    vim.cmd([[let g:terraform_fmt_on_save=1]])
+    vim.cmd([[let g:terraform_align=1]])
+end

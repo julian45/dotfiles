@@ -7,6 +7,7 @@
 {{- $ubuntu := hasKey .chezmoi.osRelease "ubuntuCodename" -}}
 {{- $wsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
 {{- $have1password := or (isExecutable (lookPath "op")) (isExecutable (lookPath "op.exe")) -}}
+{{- $powershell := isExecutable (lookPath "pwsh") -}}
 {{- $committing := false -}}
 {{- $onepasswordkeyUUID := "" -}}
 {{- $manualkey := "" -}}
@@ -117,6 +118,7 @@ data:
   uname_arch: "{{ output "uname" "-m" | trim }}"
 
   have1password: {{ $have1password }}
+  powershell: {{ $powershell }}
   committing: {{ $committing }}
   onepasswordkeyUUID: "{{ $onepasswordkeyUUID }}"
   manualkey: "{{ $manualkey }}"

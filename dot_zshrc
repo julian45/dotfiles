@@ -191,3 +191,10 @@ if [[ "$(uname -a)" == *"microsoft"* || "$(uname -a)" == *"Microsoft"* && `which
 elif [[ "$(uname -a)" == *"microsoft"* || "$(uname -a)" == *"Microsoft"* && `which wslvar &>/dev/null && echo $?` -ne 0 ]]; then
     echo "looks like you don't have wslu yet. you should probably install that"
 fi
+
+# if terraform is present, enable its completion
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C $(which terraform) terraform
+
+# if opentofu is present, enable its completion
+complete -o nospace -C $(which tofu) tofu

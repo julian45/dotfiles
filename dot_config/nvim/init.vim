@@ -37,3 +37,7 @@ autocmd OptionSet guicursor noautocmd set guicursor=
 if exists("g:neovide")
     set guifont=Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12
 endif
+
+if executable('pwsh')
+    lua require('_tree-sitter-powershell')
+endif

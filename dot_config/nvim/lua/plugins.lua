@@ -49,6 +49,11 @@ require('packer').startup(function(use)
         end,
     }
 
+    -- lint with terraform if present
+    if vim.fn.executable('terraform') == 1 then
+        use 'hashivim/vim-terraform'
+    end
+
     -- general QoL plugins
     use 'nvim-tree/nvim-web-devicons'
     use {

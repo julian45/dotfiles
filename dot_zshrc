@@ -71,9 +71,11 @@ alias shrefresh_quiet="zgenom update; chezmoi update; vim +PlugInstall +qall; vi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # PATH additions
-export PATH="$PATH:$HOME/.gnupg"
+if [[ -d $HOME/.gnupg ]]; then
+    export PATH="$PATH:$HOME/.gnupg"
+fi
 
-if [[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]] then
+if [[ -d /home/linuxbrew ]] && ([[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]]); then
 	export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 	export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 	export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
@@ -130,7 +132,7 @@ else
 fi
 
 # path addition for corbindavenport/nexus-tools
-if [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then
+if [[ -d $HOME/.nexustools ]] && [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then
 	export PATH="${PATH:+${PATH}:}${HOME}/.nexustools"
 fi
 

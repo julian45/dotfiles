@@ -192,9 +192,13 @@ elif [[ "$(uname -a)" == *"microsoft"* || "$(uname -a)" == *"Microsoft"* && `whi
     echo "looks like you don't have wslu yet. you should probably install that"
 fi
 
-# if terraform is present, enable its completion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C $(which terraform) terraform
+# if terraform is present, enable its provided completion
+if [[ `which terraform &>/dev/null && echo $?` == 0 ]]; then
+    autoload -U +X bashcompinit && bashcompinit
+    complete -o nospace -C $(which terraform) terraform
+fi
 
-# if opentofu is present, enable its completion
-complete -o nospace -C $(which tofu) tofu
+# if opentofu is present, enable its provided completion
+if [[ `which tofu &>/dev/null && echo $?` == 0 ]]; then
+    complete -o nospace -C $(which tofu) tofu
+fi

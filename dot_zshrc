@@ -3,7 +3,6 @@ export ZSH="$HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___"
 
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
-alias kb="keybase"
 # alias gpg="gpg2"
 alias cls="clear"
 

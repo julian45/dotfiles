@@ -28,7 +28,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Themes
-Plug 'altercation/vim-colors-solarized'
+Plug 'ericbn/vim-solarized'
 
 " pandoc- and Quarto-related plugins
 Plug 'vim-pandoc/vim-pandoc-syntax'

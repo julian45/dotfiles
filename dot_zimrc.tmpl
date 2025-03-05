@@ -10,17 +10,43 @@ zmodule utility
 zmodule run-help
 ## ohmyzsh stuff
 zmodule ohmyzsh/ohmyzsh --root plugins/sudo
+{{- if lookPath "brew" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/brew
+{{ end -}}
 zmodule ohmyzsh/ohmyzsh --root plugins/emoji
 zmodule ohmyzsh/ohmyzsh --root plugins/common-aliases
+{{- if lookPath "systemctl" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/systemd
+{{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+### macOS-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/macos
+{{- else if eq .chezmoi.osRelease.idLike "debian" }}
+### Debian family-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/debian
+{{- else if eq .chezmoi.osRelease.id "arch" }}
+### Arch Linux-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
+{{- else if contains "fedora" .chezmoi.osRelease.idLike }}
+# Fedora family-specific
+{{- if (lookPath "dnf") }}
+zmodule ohmyzsh/ohmyzsh --root plugins/dnf
+{{- else if and (lookPath "yum") (not (lookPath "dnf")) }}
+zmodule ohmyzsh/ohmyzsh --root plugins/yum
+{{ end -}}
+{{ end }}
 
 ## Things I like to have
 zmodule joke/zim-chezmoi
 zmodule MichaelAquilina/zsh-you-should-use
+{{- if lookPath "git" }}
 zmodule unixorn/git-extra-commands
 zmodule peterhurford/git-it-on.zsh
+{{ end -}}
 zmodule zlsun/solarized-man
+{{- if eq .chezmoi.os "darwin" }}
+zmodule unixorn/tumult.plugin.zsh
+{{ end -}}
 
 # Completion
 ## Additional completion definitions for zsh
@@ -32,13 +58,17 @@ zmodule completion
 # Prompt stuff
 ## Expose current working directory to prompt
 zmodule prompt-pwd
+{{- if lookPath "git" }}
 ## Expose git repo status info to prompts
 zmodule git-info
+{{ end -}}
 ## Choice of prompt
 zmodule minimal
 ## Add-on for magic enter
 zmodule magic-enter
 
 # Must be initialized last
+{{- if lookPath "git" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/git
+{{ end -}}
 zmodule zsh-users/zsh-syntax-highlighting

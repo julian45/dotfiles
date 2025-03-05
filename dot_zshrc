@@ -1,78 +1,21 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___"
+# zim setup
+ZIM_CONFIG_FILE=~/.zimrc
+ZIM_HOME=~/.zim
+## Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+## Install missing modules and update ${ZIM_HOME}/init.zsh if missing or outdated
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init
+fi
+## Initialize modules
+source ${ZIM_HOME}/init.zsh
 
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
-# alias gpg="gpg2"
 alias cls="clear"
-
-# load zgenom
-source "${HOME}/.zgenom/zgenom.zsh"
-
-# before oh-my-zsh runs (and thus runs compinit), enable homebrew completions
-# see https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-	autoload -Uz compinit
-	compinit
-fi
-
-# plugin time
-if ! zgenom saved; then
-	echo "Creating a zgenom save"
-
-	zgenom ohmyzsh
-
-	# plugins
-	zgenom ohmyzsh plugins/git
-	zgenom ohmyzsh plugins/sudo
-	zgenom ohmyzsh plugins/brew
-	zgenom ohmyzsh plugins/emoji
-	zgenom ohmyzsh plugins/common-aliases
-	zgenom ohmyzsh plugins/systemd
-	if [[ -f /etc/lsb-release ]] then
-		zgenom ohmyzsh plugins/debian
-	fi
-	if [[ -f /etc/arch-release ]] then
-		zgenom ohmyzsh plugins/archlinux
-	fi
-	if [[ -f /etc/redhat-release ]] && [[ $(cat /etc/redhat-release | awk -F'[^0-9]+' '{ print $2 }') -lt 8 ]] then
-		zgenom ohmyzsh plugins/yum
-	elif [[ -f /etc/redhat-release ]] && [[ $(cat /etc/redhat-release | awk -F'[^0-9]+' '{ print $2 }') -ge 8 ]] then
-		zgenom ohmyzsh plugins/dnf
-	fi
-	if [[ $(uname) == "Darwin" ]] then
-		zgenom ohmyzsh plugins/macos
-		zgenom load unixorn/tumult.plugin.zsh
-	fi
-	zgenom load zsh-users/zsh-syntax-highlighting
-	zgenom load MichaelAquilina/zsh-you-should-use
-	zgenom load unixorn/git-extra-commands
-	zgenom load peterhurford/git-it-on.zsh
-	# below plugin is meant for solarized-dark themed terminals
-	zgenom load zlsun/solarized-man
-
-	# theme
-	zgenom load subnixr/minimal
-
-	# save all to init script
-	zgenom save
-fi
-
-# For a complete refresh of rc files, with an opportunity to see update info
-alias shrefresh="zgenom update; chezmoi update; vim +PlugInstall +qall; vim +PlugUpdate"
-
-# For the same, but silent (e.g., to set as a cron job)
-alias shrefresh_quiet="zgenom update; chezmoi update; vim +PlugInstall +qall; vim +PlugUpdate +qall"
-
-# if using iTerm2 on mac
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# PATH additions
-if [[ -d $HOME/.gnupg ]]; then
-    export PATH="$PATH:$HOME/.gnupg"
-fi
 
 if [[ -d /home/linuxbrew ]] && ([[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]]); then
 	export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
@@ -158,10 +101,6 @@ if [[ `which op &>/dev/null && echo $?` == 0 ]]; then
 	eval "$(op completion zsh)"; compdef _op op
 fi
 
-# deal with annoying tab-completion issue and enforce complete-on-first
-## (not sure how this issue popped up, but... https://imgur.com/U1CqMH8)
-zstyle '*' single-ignored complete
-
 # fix homebrew version issues on macOS?
 if [ -d "/opt/homebrew" ]; then
 	alias vim="/opt/homebrew/bin/vim"
@@ -170,11 +109,6 @@ fi
 # if cantino/mcfly is present, initialize it
 if [[ `which mcfly &>/dev/null && echo $?` == 0 ]]; then
     eval "$(mcfly init zsh)"
-fi
-
-# for shodan CLI
-if [ -d "${HOME}/Library/Python/3.11/bin" ]; then
-	export PATH="${PATH}:${HOME}/Library/Python/3.11/bin"
 fi
 
 # if on macOS, create some aliases to ease starting and exiting GlobalProtect

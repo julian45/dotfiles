@@ -1,0 +1,44 @@
+# Modules
+## Sane defaults per Zim maintainers
+### sets sane zsh built-in environment options
+zmodule environment
+### applies correct bindkeys for input events
+zmodule input
+### utility aliases and functions (incl. adding color to ls, grep, less)
+zmodule utility
+### find best help and use it
+zmodule run-help
+## ohmyzsh stuff
+zmodule ohmyzsh/ohmyzsh --root plugins/sudo
+zmodule ohmyzsh/ohmyzsh --root plugins/brew
+zmodule ohmyzsh/ohmyzsh --root plugins/emoji
+zmodule ohmyzsh/ohmyzsh --root plugins/common-aliases
+zmodule ohmyzsh/ohmyzsh --root plugins/systemd
+
+## Things I like to have
+zmodule joke/zim-chezmoi
+zmodule MichaelAquilina/zsh-you-should-use
+zmodule unixorn/git-extra-commands
+zmodule peterhurford/git-it-on.zsh
+zmodule zlsun/solarized-man
+
+# Completion
+## Additional completion definitions for zsh
+zmodule zsh-users/zsh-completions --fpath src
+## Enables and configures smart and extensive tab completion
+### completion must be sourced after all modules that add completion definitions!
+zmodule completion
+
+# Prompt stuff
+## Expose current working directory to prompt
+zmodule prompt-pwd
+## Expose git repo status info to prompts
+zmodule git-info
+## Choice of prompt
+zmodule minimal
+## Add-on for magic enter
+zmodule magic-enter
+
+# Must be initialized last
+zmodule ohmyzsh/ohmyzsh --root plugins/git
+zmodule zsh-users/zsh-syntax-highlighting

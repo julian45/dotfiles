@@ -18,7 +18,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/common-aliases
 {{- if lookPath "systemctl" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{ end -}}
-{{- if eq .chezmoi.osRelease.id "arch" }}
+{{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
 {{- else if and (hasKey .chezmoi.osRelease "idLike") (contains "fedora" .chezmoi.osRelease.idLike) }}

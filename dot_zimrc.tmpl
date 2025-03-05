@@ -21,9 +21,6 @@ zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{- if eq .chezmoi.os "darwin" }}
 ### macOS-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/macos
-{{- else if and (hasKey .chezmoi.osRelease "idLike") (eq .chezmoi.osRelease.idLike "debian") }}
-### Debian family-specific
-zmodule ohmyzsh/ohmyzsh --root plugins/debian
 {{- else if eq .chezmoi.osRelease.id "arch" }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
@@ -70,5 +67,9 @@ zmodule magic-enter
 # Must be initialized last
 {{- if lookPath "git" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/git
+{{ end -}}
+{{- if and (hasKey .chezmoi.osRelease "idLike") (eq .chezmoi.osRelease.idLike "debian") }}
+### Debian family-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/debian
 {{ end -}}
 zmodule zsh-users/zsh-syntax-highlighting

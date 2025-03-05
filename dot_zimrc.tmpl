@@ -21,13 +21,13 @@ zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{- if eq .chezmoi.os "darwin" }}
 ### macOS-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/macos
-{{- else if eq .chezmoi.osRelease.idLike "debian" }}
+{{- else if and (hasKey .chezmoi.osRelease "idLike") (eq .chezmoi.osRelease.idLike "debian") }}
 ### Debian family-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/debian
 {{- else if eq .chezmoi.osRelease.id "arch" }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
-{{- else if contains "fedora" .chezmoi.osRelease.idLike }}
+{{- else if and (hasKey .chezmoi.osRelease "idLike") (contains "fedora" .chezmoi.osRelease.idLike) }}
 # Fedora family-specific
 {{- if (lookPath "dnf") }}
 zmodule ohmyzsh/ohmyzsh --root plugins/dnf

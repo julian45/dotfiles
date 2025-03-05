@@ -10,7 +10,7 @@ zmodule utility
 zmodule run-help
 ## ohmyzsh stuff
 zmodule ohmyzsh/ohmyzsh --root plugins/sudo
-{{- if lookPath "brew" }}
+{{ if lookPath "brew" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/brew
 {{ end -}}
 zmodule ohmyzsh/ohmyzsh --root plugins/emoji
@@ -46,7 +46,7 @@ zmodule peterhurford/git-it-on.zsh
 zmodule zlsun/solarized-man
 {{- if eq .chezmoi.os "darwin" }}
 zmodule unixorn/tumult.plugin.zsh
-{{ end -}}
+{{ end }}
 
 # Completion
 ## Additional completion definitions for zsh

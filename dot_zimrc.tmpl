@@ -18,10 +18,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/common-aliases
 {{- if lookPath "systemctl" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{ end -}}
-{{- if eq .chezmoi.os "darwin" }}
-### macOS-specific
-zmodule ohmyzsh/ohmyzsh --root plugins/macos
-{{- else if eq .chezmoi.osRelease.id "arch" }}
+{{- if eq .chezmoi.osRelease.id "arch" }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
 {{- else if and (hasKey .chezmoi.osRelease "idLike") (contains "fedora" .chezmoi.osRelease.idLike) }}
@@ -68,7 +65,10 @@ zmodule magic-enter
 {{- if lookPath "git" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/git
 {{ end -}}
-{{- if and (hasKey .chezmoi.osRelease "idLike") (eq .chezmoi.osRelease.idLike "debian") }}
+{{- if eq .chezmoi.os "darwin" -}}
+### macOS-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/macos
+{{ else if and (hasKey .chezmoi.osRelease "idLike") (eq .chezmoi.osRelease.idLike "debian") }}
 ### Debian family-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/debian
 {{ end -}}

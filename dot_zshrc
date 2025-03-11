@@ -29,6 +29,7 @@ fi
 
 # theme config
 MNML_RPROMPT=('mnml_cwd 2' mnml_git)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=245"
 
 # If using Microsoft Terminal, default to ~ rather than /mnt/c/Users/[username]
 # and also alias clip.exe to clip

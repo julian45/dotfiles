@@ -15,7 +15,6 @@ source ${ZIM_HOME}/init.zsh
 
 # Aliases
 alias aui="sudo apt-get update; sudo apt-get upgrade; sudo apt-get dist-upgrade"
-alias cls="clear"
 
 if [[ -d /home/linuxbrew ]] && ([[ -f /etc/lsb-release ]] || [[ -f /etc/os-release ]]); then
 	export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"

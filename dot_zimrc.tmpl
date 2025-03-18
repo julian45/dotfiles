@@ -36,7 +36,7 @@ zmodule joke/zim-chezmoi
 zmodule MichaelAquilina/zsh-you-should-use
 {{- if lookPath "git" }}
 zmodule unixorn/git-extra-commands
-zmodule peterhurford/git-it-on.zsh
+zmodule peterhurford/git-it-on.zsh --source git-it-on.plugin.zsh
 {{ end -}}
 zmodule zlsun/solarized-man
 {{- if eq .chezmoi.os "darwin" }}

@@ -1,4 +1,4 @@
--- set statement time
+-- set some main options
 vim.opt.showmatch = true -- show matching brackets
 vim.opt.ignorecase = true -- case insensitive matching
 vim.opt.mouse = "v" -- middle-click paste with mouse
@@ -12,32 +12,32 @@ vim.opt.softtabstop = 4 -- see multiple spaces as tabstops so <BS> does the righ
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
 
-vim.cmd([[
-" get all the plugins we need from lua/plugins.lua
-lua require('plugins')
+-- map leader and localleader
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-" color scheme settings
-syntax enable
-colorscheme solarized
+-- map ; as a shortcut to : for running commands
+vim.keymap.set("n", ";", ":")
+-- load in the plugins we require from lua/plugins.lua
+require('plugins')
 
-" mappings/remappings
-let g:mapleader = ','
-nnoremap ; :
+-- set colorscheme
+vim.cmd([[colorscheme solarized]])
+-- try to prevent nvim from overriding terminal cursor format (again)
+vim.opt.guicursor = ""
+-- workaround some broken plugins which set guicursor indiscriminately
+-- (thanks, neovim FAQ!)
+vim.cmd([[autocmd OptionSet guicursor noautocmd set guicursor=]])
 
-" prevent nvim from overriding terminal cursor format
-set guicursor=
-"" workaround some broken plugins which set guicursor indiscriminately
-"" (thanks, nvim FAQ!)
-autocmd OptionSet guicursor noautocmd set guicursor=
+-- configuration for Neovide (https://neovide.dev) if present
+if vim.fn.exists("g:neovide") then
+    vim.opt.guifont = "Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12"
+end
 
-" configuration for Neovide (https://neovide.dev)
-if exists("g:neovide")
-    set guifont=Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12
-endif
+-- if PowerShell 7 is available, configure tree-sitter-powershell
+if vim.fn.executable("pwsh") == 1 then
+    require("_tree-sitter-powershell")
+end
 
-if executable('pwsh')
-    lua require('_tree-sitter-powershell')
-endif
-
-lua require('_lspconfig')
-]])
+-- configure lspconfig
+require("_lspconfig")

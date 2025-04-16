@@ -1,3 +1,4 @@
+vim.cmd([[
 " big ole block of set statements
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
@@ -43,3 +44,4 @@ if executable('pwsh')
 endif
 
 lua require('_lspconfig')
+]])

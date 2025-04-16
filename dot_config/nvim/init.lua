@@ -1,22 +1,18 @@
-vim.cmd([[
-" big ole block of set statements
-set nocompatible            " disable compatibility to old-time vi
-set showmatch               " show matching brackets.
-set ignorecase              " case insensitive matching
-set mouse=v                 " middle-click paste with mouse
-set hlsearch                " highlight search results
-set autoindent              " indent a new line the same amount as the line just typed
-set number                  " add line numbers
-set wildmode=longest,list   " get bash-like tab completions
-set cc=88                   " set colour columns for good coding style
-filetype plugin indent on   " allows auto-indenting depending on file type
-set tabstop=4               " number of columns occupied by a tab character
-set expandtab               " convert tabs to white space
-set shiftwidth=4            " width for autoindents
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set termguicolors
-set guicursor=
+-- set statement time
+vim.opt.showmatch = true -- show matching brackets
+vim.opt.ignorecase = true -- case insensitive matching
+vim.opt.mouse = "v" -- middle-click paste with mouse
+vim.opt.number = true -- add line numbers
+vim.opt.wildmode = "longest,list" -- get bash-like tab completion
+vim.opt.cc = "88" -- set color columns for good coding style
+vim.opt.tabstop = 4 -- number of columns supplied by a tab character by default
+vim.opt.expandtab = true -- convert tabs to whitespace
+vim.opt.shiftwidth = 4 -- width for autoindents
+vim.opt.softtabstop = 4 -- see multiple spaces as tabstops so <BS> does the right thing
+vim.opt.termguicolors = true
+vim.opt.guicursor = ""
 
+vim.cmd([[
 " get all the plugins we need from lua/plugins.lua
 lua require('plugins')
 

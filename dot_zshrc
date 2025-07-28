@@ -111,12 +111,6 @@ if [[ `which mcfly &>/dev/null && echo $?` == 0 ]]; then
     eval "$(mcfly init zsh)"
 fi
 
-# if on macOS, create some aliases to ease starting and exiting GlobalProtect
-if [[ $(uname) == "Darwin" && `ls -1 /Library/LaunchAgents/com.paloaltonetworks.gp.pangp* 2>/dev/null | wc -l ` -gt 0 ]]; then
-    alias pangpon="launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
-    alias pangpoff="launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*"
-fi
-
 # if on WSL, determine winhome; if a certain tool isn't available, prompt to install
 #{{- if eq .chezmoi.os "linux" -}}
 # {{- if (and (.chezmoi.kernel.osrelease | lower | contains "microsoft") (lookPath "wslvar")) -}}

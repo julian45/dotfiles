@@ -101,6 +101,7 @@ filetype plugin on
 syntax enable
 set number
 set background=dark
+set termguicolors
 colorscheme solarized
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'

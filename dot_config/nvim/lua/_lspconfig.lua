@@ -1,4 +1,3 @@
-local lspconfig = require('lspconfig')
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -22,13 +21,14 @@ if home_directory == nil then
 end
 
 if vim.fn.executable('pwsh') == 1 then
-    lspconfig.powershell_es.setup{
-        bundle_path = '~/extras/PowerShellEditorServices',
+    vim.lsp.config('powershell_es', {
+        bundle_path = '~/extras',
         settings = { powershell = { codeFormatting = { Preset = 'OTBS' } } }
-    }
+    })
+    vim.lsp.enable('powershell_es')
 end
 
 if vim.fn.executable('terraform') == 1 then
-    lspconfig.terraformls.setup{}
-    lspconfig.tflint.setup{}
+    vim.lsp.enable('terraformls')
+    vim.lsp.enable('tflint')
 end

@@ -22,7 +22,7 @@ end
 
 if vim.fn.executable('pwsh') == 1 then
     vim.lsp.config('powershell_es', {
-        bundle_path = '~/extras',
+        bundle_path = '~/extras/PowerShellEditorServices',
         settings = { powershell = { codeFormatting = { Preset = 'OTBS' } } }
     })
     vim.lsp.enable('powershell_es')

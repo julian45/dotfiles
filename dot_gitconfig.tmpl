@@ -12,7 +12,7 @@
 [gpg "ssh"]
 {{-   if .have1password }}
 {{-     if .is_wsl }}
-	program = {{ expandenv "$winhome/AppData/Local/1Password/app/8/op-ssh-sign.exe" | quote }}
+	program = {{ expandenv "$winhome/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe" | quote }}
 {{     else if eq .chezmoi.os "darwin" }}
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 {{-     end }}

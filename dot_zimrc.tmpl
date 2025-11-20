@@ -22,7 +22,7 @@ zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux
-{{- else if or (eq .chezmoi.osRelease.id "fedora") (and (hasKey .chezmoi.osRelease "idLike") (contains "fedora" .chezmoi.osRelease.idLike)) }}
+{{- else if and (hasKey .chezmoi.osRelease "id") (or (eq .chezmoi.osRelease.id "fedora") (and (hasKey .chezmoi.osRelease "idLike") (contains "fedora" .chezmoi.osRelease.idLike))) }}
 # Fedora family-specific
 {{- if (lookPath "dnf") }}
 zmodule ohmyzsh/ohmyzsh --root plugins/dnf

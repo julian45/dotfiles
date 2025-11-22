@@ -136,3 +136,8 @@ fi
 if [[ `which tofu &>/dev/null && echo $?` == 0 ]]; then
     complete -o nospace -C $(which tofu) tofu
 fi
+
+# if dnscontrol is present, enable its provided completion
+if [[ `which dnscontrol &>/dev/null && echo $?` == 0 ]]; then
+    eval "$(dnscontrol shell-completion zsh)"
+fi

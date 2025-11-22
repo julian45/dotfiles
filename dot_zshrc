@@ -78,6 +78,11 @@ if [[ -d $HOME/.nexustools ]] && [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then
 	export PATH="${PATH:+${PATH}:}${HOME}/.nexustools"
 fi
 
+# path addition for go bin if present
+if [[ -d $HOME/go/bin ]] && [[ ! "$PATH" == *${HOME}/go/bin* ]]; then
+	export PATH="${PATH:+${PATH}:}${HOME}/go/bin"
+fi
+
 # annoying workaround for macFUSE issues on macOS
 if [[ $(uname) == "Darwin" ]]; then
 	alias macfuse_reset="sudo kextunload -b io.macfuse.filesystems.macfuse"

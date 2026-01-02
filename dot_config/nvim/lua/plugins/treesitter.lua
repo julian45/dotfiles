@@ -27,7 +27,7 @@ return {
                 "vimdoc",
                 "xml",
             },
-            
+
         },
         config = function()
             require("nvim-treesitter.configs")

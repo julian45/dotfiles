@@ -16,10 +16,5 @@ if vim.fn.exists("g:neovide") then
     vim.opt.guifont = "Inconsolata_Nerd_Font,Monaco,Noto_Color_Emoji:h12"
 end
 
--- if PowerShell 7 is available, configure tree-sitter-powershell
-if vim.fn.executable("pwsh") == 1 then
-    require("_tree-sitter-powershell")
-end
-
 -- configure lspconfig
 require("_lspconfig")

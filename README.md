@@ -3,17 +3,16 @@ Here be dotfiles!
 
 ## What I use
 * zsh
-  * [zgenom](https://github.com/jandamm/zgenom) for plugin management
+  * [zimfw AKA the Zim framework](https://zimfw.sh/) for fast & efficient plugin management
     * [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) for a number of said plugins
-    * various others for QoL improvements, which are dynamically activated by detecting which OS you use (out of: WSL Ubuntu, normal Ubuntu, macOS, Arch, Debian?)
+    * various others for QoL improvements, which are dynamically activated by detecting which OS you use (out of: WSL Ubuntu, normal Ubuntu, macOS, Arch, Fedora, RHEL + similar, Debian?)
 * neovim with Lua-forward configuration
-  * [packer](https://github.com/wbthomason/packer.nvim) for package management. Highlights include:
+  * [lazy.nvim](https://lazy.folke.io/) for package management. Highlights include:
     * [this Solarized Dark theme](https://github.com/ishan9299/nvim-solarized-lua)
     * [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
     * Edges:
       * [feline](https://github.com/feline-nvim/feline.nvim) for the statusbar
       * [gitsigns](https://github.com/lewis6991/gitsigns.nvim) for the gutter
-    * [leap](https://github.com/ggandor/leap.nvim)
 * vim
   * [vim-plug](https://github.com/junegunn/vim-plug) for plugin management
     * a number of plugins, mostly for QoL improvement and git integration
@@ -25,21 +24,16 @@ Here be dotfiles!
 
 ### Basics
 ```sh
-git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply julian45
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install # you can safely say no to the last question, since the sourcing commands are already included 
-# run below line only if you've used tarjoilija/zgen before
-rm -rf .zgen
 ```
 
-### neovim-specific
+### zsh-specific
+Upon your first use of zsh after dotfiles installation, the Zim Framework will bootstrap itself and download all necessary plugins. From that point onward, the various [zimfw commands](https://zimfw.sh/docs/commands/#zimfw) can be used to grab plugin updates, install new plugins if you changed your zimrc, update your local copy of the Zim Framework, etc.
 
+### neovim-specific
 [plugins.lua](dot_config/nvim/lua/plugins.lua) is set up so that upon your first run of `nvim`, it should automatically pull everything down. Once it's done, you'll likely need to quit and reopen for everything (e.g., theme) to properly apply, but after that, everything should be good to go for neovim! 
 
 ### vim-specific
-```sh
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-```
-Then, open a new shell and wait just a bit, and you should be good to go! The above section is partially reconstructed from memory; please let me know if I'm missing something.
+[the vimrc](dot_vimrc) is set up such that it will automatically bootstrap vim-plug and the specified plugins upon the first time you start vim after dotfile installation. It may initially complain about the solarized theme not being present, but this is expected and will go away after vim-plug is done working.

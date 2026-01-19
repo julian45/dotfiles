@@ -14,7 +14,9 @@
 {{-     if .is_wsl }}
 	program = {{ expandenv "$winhome/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe" | quote }}
 {{     else if eq .chezmoi.os "darwin" }}
-	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{     else if eq .chezmoi.os "linux" }}
+    	program = "/opt/1Password/op-ssh-sign"
 {{-     end }}
 {{   else }}
 	program = {{- lookPath "ssh" | quote -}}

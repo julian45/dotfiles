@@ -3,8 +3,6 @@ return {
         "nvim-treesitter/nvim-treesitter",
         version = false, -- tagged releases tend to be a bit old
         build = ":TSUpdate",
-        event = { "LazyFile", "VeryLazy" },
-        lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the command line
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         opts = {
             highlight = {

@@ -1,1 +1,5 @@
 README.md
+
+{{- if not (and .have1password (lstat "/usr/share/applications/1password.desktop")) }}
+.local/share/applications/1Password.desktop
+{{- end }}

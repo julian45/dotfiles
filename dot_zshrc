@@ -73,11 +73,6 @@ else
 	export EDITOR="vim"
 fi
 
-# path addition for corbindavenport/nexus-tools
-if [[ -d $HOME/.nexustools ]] && [[ ! "$PATH" == *${HOME}/.nexustools* ]]; then
-	export PATH="${PATH:+${PATH}:}${HOME}/.nexustools"
-fi
-
 # path addition for go bin if present
 if [[ -d $HOME/go/bin ]] && [[ ! "$PATH" == *${HOME}/go/bin* ]]; then
 	export PATH="${PATH:+${PATH}:}${HOME}/go/bin"

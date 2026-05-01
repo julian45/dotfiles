@@ -3,7 +3,7 @@
         name = {{ .name }}
 	email = {{ .email }}
 {{-   if .have1password }}
-	signingkey = key::{{- (onepasswordDetailsFields .onepasswordkeyUUID).public_key.value }}
+	signingkey = key::{{- (onepasswordDetailsFields .onepasswordkeyUUID "" .onepasswordaccount).public_key.value }}
 {{    else }}
 	signingkey = key::{{- .manualkey }}
 {{-   end -}}

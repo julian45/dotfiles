@@ -10,6 +10,7 @@
 {{- $powershell := isExecutable (lookPath "pwsh") -}}
 {{- $committing := false -}}
 {{- $onepasswordkeyUUID := "" -}}
+{{- $onepasswordaccount := "" -}}
 {{- $manualkey := "" -}}
 
 {{- if hasKey . "name" -}}
@@ -90,6 +91,20 @@
 {{-   $onepasswordkeyUUID = $answer -}}
 {{- end -}}
 
+{{- if hasKey . "onepasswordaccount" -}}
+{{-   $onepasswordaccount = .onepasswordaccount -}}
+{{- end -}}
+{{- if (and $interactive $committing $have1password) -}}
+{{-   $question := "💬 paste your choice of 1Password account, please" -}}
+{{-   $answer := "" -}}
+{{-   if $onepasswordaccount -}}
+{{-     $answer = promptString $question $onepasswordaccount -}}
+{{-   else -}}
+{{-     $answer = promptString $question "" -}}
+{{-   end -}}
+{{-   $onepasswordaccount = $answer -}}
+{{- end -}}
+
 {{- if hasKey . "manualkey" -}}
 {{-   $manualkey = .manualkey -}}
 {{- end -}}
@@ -121,6 +136,7 @@ data:
   powershell: {{ $powershell }}
   committing: {{ $committing }}
   onepasswordkeyUUID: "{{ $onepasswordkeyUUID }}"
+  onepasswordaccount: "{{ $onepasswordaccount }}"
   manualkey: "{{ $manualkey }}"
 
 onepassword:

@@ -30,7 +30,10 @@ zmodule ohmyzsh/ohmyzsh --root plugins/dnf
 zmodule ohmyzsh/ohmyzsh --root plugins/yum
 {{ end -}}
 {{ end }}
-
+{{- if and (hasKey .chezmoi.osRelease "id") (or (contains "suse" .chezmoi.osRelease.id) (and (hasKey .chezmoi.osRelease "idLike") (contains "suse" .chezmoi.osRelease.idLike))) }}
+# SUSE-specific
+zmodule ohmyzsh/ohmyzsh --root plugins/suse
+{{ end }}
 ## Things I like to have
 zmodule joke/zim-chezmoi
 zmodule MichaelAquilina/zsh-you-should-use

@@ -11,6 +11,7 @@ zmodule termtitle
 zmodule run-help
 ## ohmyzsh stuff
 zmodule ohmyzsh/ohmyzsh --root plugins/sudo
+zmodule ohmyzsh/ohmyzsh --source lib/functions.zsh
 {{ if lookPath "brew" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/brew
 {{ end -}}

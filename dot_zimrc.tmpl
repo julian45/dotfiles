@@ -20,6 +20,10 @@ zmodule ohmyzsh/ohmyzsh --root plugins/common-aliases
 {{- if lookPath "systemctl" }}
 zmodule ohmyzsh/ohmyzsh --root plugins/systemd
 {{ end -}}
+{{- if lookPath "docker" }}
+zmodule ohmyzsh/ohmyzsh --root plugins/docker
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose
+{{ end -}}
 {{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "arch") }}
 ### Arch Linux-specific
 zmodule ohmyzsh/ohmyzsh --root plugins/archlinux

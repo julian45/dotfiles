@@ -101,9 +101,9 @@ if [[ `which op &>/dev/null && echo $?` == 0 ]]; then
 	eval "$(op completion zsh)"; compdef _op op
 fi
 
-# fix homebrew version issues on macOS?
+# fix homebrew shadowing issues on macOS
 if [ -d "/opt/homebrew" ]; then
-	alias vim="/opt/homebrew/bin/vim"
+    export PATH="/opt/homebrew/bin:$PATH"
 fi
 
 # if cantino/mcfly is present, initialize it

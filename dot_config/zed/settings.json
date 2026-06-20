@@ -1,0 +1,54 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "icon_theme": "Zed (Default)",
+  "agent": {
+    "dock": "right",
+    "enabled": false
+  },
+  "buffer_font_size": 15,
+  "disable_ai": true,
+  "inlay_hints": {
+    "enabled": true
+  },
+  "minimap": {
+    "show": "auto"
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "terminal": {
+    "minimum_contrast": 60
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Solarized Light",
+    "dark": "Solarized Dark"
+  },
+  "title_bar": {
+    "show_sign_in": false
+  },
+  "toolbar": {
+    "agent_review": false
+  },
+  "ui_font_size": 16
+}
+

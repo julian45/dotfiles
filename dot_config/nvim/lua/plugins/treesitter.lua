@@ -28,7 +28,6 @@ return {
 
         },
         config = function()
-            require("nvim-treesitter.configs")
             if vim.fn.executable("pwsh") == 1 then
                 local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
                 parser_config.powershell = {
